@@ -33,9 +33,14 @@
     "metadata"
   ],
   "license": "Apache-2.0",
-  "main": "./dist/umd/index.js",
-  "module": "./dist/es5/index.js",
-  "es2015": "./dist/es2015/index.js",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/es2015/index.js",
+      "require": "./dist/umd/index.js", 
+      "types": "./dist/types/index.d.ts" 
+    }
+  },
   "types": "./dist/types/index.d.ts",
   "name": "@dipscope/type-manager",
   "repository": {
