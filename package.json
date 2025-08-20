@@ -33,6 +33,11 @@
     "metadata"
   ],
   "license": "Apache-2.0",
+  "exports": {
+    "import": "./dist/node16/index.js",
+    "require": "./dist/umd/index.js",
+    "default": "./dist/umd/index.js"
+  },
   "main": "./dist/umd/index.js",
   "module": "./dist/es5/index.js",
   "es2015": "./dist/es2015/index.js",
@@ -43,11 +48,12 @@
     "url": "https://github.com/dipscope/TypeManager.TS.git"
   },
   "scripts": {
-    "build": "npm run build:clean && npm run build:types && npm run build:es5 && npm run build:es2015 && npm run build:umd",
+    "build": "npm run build:clean && npm run build:types && npm run build:es5 && npm run build:es2015 && npm run build:umd && npm run build:node16",
     "build:clean": "shx rm -rf dist",
     "build:types": "tsc -p tsconfig/tsconfig.types.json",
     "build:es5": "tsc -p tsconfig/tsconfig.es5.json",
     "build:es2015": "tsc -p tsconfig/tsconfig.es2015.json",
+    "build:node16": "tsc -p tsconfig/node16/tsconfig.json && cd tsconfig/node16 && npx tsc-esm-fix 'dist/node16/**.*.js' --ext .js",
     "build:umd": "npx webpack --config=webpack.config.js",
     "test": "jasmine-ts --config=jasmine.json",
     "lint": "eslint . --ext .ts"
